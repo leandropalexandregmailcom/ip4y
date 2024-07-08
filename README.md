@@ -10,7 +10,6 @@ MySQL
 Configuração e Execução com Docker
 Clone o repositório:
 
-sh
 Copiar código
 git clone git@github.com:leandropalexandregmailcom/ip4y.git
 cd ip4y
@@ -20,12 +19,11 @@ Copie o arquivo .env.example para .env e ajuste as configurações conforme nece
 
 Construa e inicie os containers:
 
-sh
 Copiar código
 docker-compose up --build -d
 Execute as migrações do banco de dados:
 
-sh
+
 Copiar código
 docker-compose exec php php artisan migrate
 Acesse a aplicação:
@@ -35,23 +33,23 @@ Acesse http://localhost:8081 em seu navegador.
 Configuração e Execução sem Docker
 Clone o repositório:
 
-sh
+
 Copiar código
 git clone git@github.com:leandropalexandregmailcom/ip4y.git
 cd ip4y
 Instale as dependências PHP:
 
-sh
+
 Copiar código
 composer install
 Instale as dependências Node:
 
-sh
+
 Copiar código
 npm install
 Compile os assets:
 
-sh
+
 Copiar código
 npm run dev
 Configure o arquivo .env:
@@ -64,12 +62,12 @@ Certifique-se de ter um banco de dados MySQL rodando e ajuste as configurações
 
 Execute as migrações do banco de dados:
 
-sh
+
 Copiar código
 php artisan migrate
 Inicie o servidor de desenvolvimento:
 
-sh
+
 Copiar código
 php artisan serve
 Acesse a aplicação:
@@ -172,7 +170,7 @@ A documentação da API é gerada usando Swagger. Para visualizar a documentaç�
 
 Gere a documentação do Swagger:
 
-sh
+
 Copiar código
 php artisan l5-swagger:generate
 Acesse a documentação no navegador:
