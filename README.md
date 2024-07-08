@@ -1,66 +1,188 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Projeto IP4Y
+Este projeto é um sistema simples de gerenciamento de formulários usando Laravel, MySQL e Docker. Ele inclui uma API RESTful documentada com Swagger.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Requisitos
+Docker (opcional)
+PHP 8.3
+Composer
+Node.js & NPM
+MySQL
+Configuração e Execução com Docker
+Clone o repositório:
 
-## About Laravel
+sh
+Copiar código
+git clone git@github.com:leandropalexandregmailcom/ip4y.git
+cd ip4y
+Configure o arquivo .env:
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Copie o arquivo .env.example para .env e ajuste as configurações conforme necessário.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Construa e inicie os containers:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+sh
+Copiar código
+docker-compose up --build -d
+Execute as migrações do banco de dados:
 
-## Learning Laravel
+sh
+Copiar código
+docker-compose exec php php artisan migrate
+Acesse a aplicação:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Acesse http://localhost:8081 em seu navegador.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Configuração e Execução sem Docker
+Clone o repositório:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+sh
+Copiar código
+git clone git@github.com:leandropalexandregmailcom/ip4y.git
+cd ip4y
+Instale as dependências PHP:
 
-## Laravel Sponsors
+sh
+Copiar código
+composer install
+Instale as dependências Node:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+sh
+Copiar código
+npm install
+Compile os assets:
 
-### Premium Partners
+sh
+Copiar código
+npm run dev
+Configure o arquivo .env:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Copie o arquivo .env.example para .env e ajuste as configurações conforme necessário.
 
-## Contributing
+Configure o banco de dados:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Certifique-se de ter um banco de dados MySQL rodando e ajuste as configurações no arquivo .env.
 
-## Code of Conduct
+Execute as migrações do banco de dados:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+sh
+Copiar código
+php artisan migrate
+Inicie o servidor de desenvolvimento:
 
-## Security Vulnerabilities
+sh
+Copiar código
+php artisan serve
+Acesse a aplicação:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Acesse http://localhost:8000 em seu navegador.
 
-## License
+API Endpoints
+Listar Todos os Formulários
+URL: /api/forms
+Método: GET
+Resposta:
+json
+Copiar código
+[
+    {
+        "id": 1,
+        "cpf": "12345678901",
+        "nome": "Nome",
+        "sobrenome": "Sobrenome",
+        "data_nascimento": "2000-01-01",
+        "email": "email@example.com",
+        "genero": "Masculino",
+        "created_at": "2023-07-03T12:00:00.000000Z",
+        "updated_at": "2023-07-03T12:00:00.000000Z"
+    }
+]
+Criar Novo Formulário
+URL: /api/forms
+Método: POST
+Dados de Envio:
+json
+Copiar código
+{
+    "cpf": "12345678901",
+    "nome": "Nome",
+    "sobrenome": "Sobrenome",
+    "data_nascimento": "2000-01-01",
+    "email": "email@example.com",
+    "genero": "Masculino"
+}
+Resposta:
+json
+Copiar código
+{
+    "message": "Formulário criado com sucesso!",
+    "form": {
+        "id": 2,
+        "cpf": "12345678901",
+        "nome": "Nome",
+        "sobrenome": "Sobrenome",
+        "data_nascimento": "2000-01-01",
+        "email": "email@example.com",
+        "genero": "Masculino",
+        "created_at": "2023-07-03T12:00:00.000000Z",
+        "updated_at": "2023-07-03T12:00:00.000000Z"
+    }
+}
+Atualizar Formulário
+URL: /api/forms/{id}
+Método: PUT
+Dados de Envio:
+json
+Copiar código
+{
+    "cpf": "12345678901",
+    "nome": "Nome Atualizado",
+    "sobrenome": "Sobrenome Atualizado",
+    "data_nascimento": "2000-01-01",
+    "email": "email@example.com",
+    "genero": "Masculino"
+}
+Resposta:
+json
+Copiar código
+{
+    "message": "Formulário atualizado com sucesso!",
+    "form": {
+        "id": 1,
+        "cpf": "12345678901",
+        "nome": "Nome Atualizado",
+        "sobrenome": "Sobrenome Atualizado",
+        "data_nascimento": "2000-01-01",
+        "email": "email@example.com",
+        "genero": "Masculino",
+        "created_at": "2023-07-03T12:00:00.000000Z",
+        "updated_at": "2023-07-03T12:00:00.000000Z"
+    }
+}
+Deletar Formulário
+URL: /api/forms/{id}
+Método: DELETE
+Resposta:
+json
+Copiar código
+{
+    "message": "Formulário deletado com sucesso!"
+}
+Documentação da API
+A documentação da API é gerada usando Swagger. Para visualizar a documentação:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Gere a documentação do Swagger:
+
+sh
+Copiar código
+php artisan l5-swagger:generate
+Acesse a documentação no navegador:
+
+http://localhost:8081/api/documentation
+
+Contribuição
+Sinta-se à vontade para enviar pull requests e relatar problemas. Para grandes mudanças, por favor, abra uma issue primeiro para discutir o que você gostaria de mudar.
+
+Licença
+MIT
+
+Este README fornece instruções claras sobre como configurar e executar o projeto, tanto com Docker quanto sem Docker, além de uma descrição dos endpoints da API e como acessar a documentação da API.
